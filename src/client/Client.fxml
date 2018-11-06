@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.image.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.web.*?>
+<?import javafx.scene.media.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="835.0" prefWidth="1450.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="client.ClientController">
+   <center>
+      <TableView fx:id="clientTable" maxWidth="-Infinity" prefHeight="768.0" prefWidth="1454.0" BorderPane.alignment="CENTER">
+        <columns>
+          <TableColumn fx:id="columnName" prefWidth="301.0" text="Name" />
+          <TableColumn fx:id="columnIndustryType" prefWidth="168.0" text="Industry" />
+            <TableColumn fx:id="columnParentCompany" prefWidth="293.0" text="Parent Company" />
+            <TableColumn fx:id="columnStatus" prefWidth="132.0" text="Status" />
+            <TableColumn fx:id="columnFee" prefWidth="123.0" text="Fee" />
+            <TableColumn fx:id="columnDetailsbtn" prefWidth="437.0" />
+        </columns>
+      </TableView>
+   </center>
+   <top>
+      <Pane maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="67.0" prefWidth="1319.0" BorderPane.alignment="CENTER">
+         <children>
+            <Button fx:id="btnAddClient" layoutX="1249.0" layoutY="10.0" mnemonicParsing="false" onAction="#addNewClient" prefHeight="45.0" prefWidth="45.0">
+               <graphic>
+                  <ImageView fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../Icons/plus-math.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Button>
+            <Label layoutX="14.0" layoutY="17.0" prefHeight="35.0" prefWidth="93.0" text="Clients">
+               <font>
+                  <Font size="24.0" />
+               </font>
+            </Label>
+            <TextField fx:id="clientFilter" layoutX="787.0" layoutY="15.0" onKeyReleased="#filterList" prefHeight="39.0" prefWidth="437.0" promptText="Filter">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </TextField>
+         </children>
+      </Pane>
+   </top>
+</BorderPane>
