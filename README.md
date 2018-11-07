@@ -61,6 +61,7 @@ JOB ORDER: Job posting from a company
 4.2 - Assign a candidate to a job order from job order view (from group or from the list of all candidates)
   4.2.1 - Start steps process, ie. 1st interview, 2nd interview, phone interview, etc... (steps are custom named by user)
 4.3 - Assign a job order to a candidate from the candidates view
+5 - Add a notes to the candidate
 
 ```
 
