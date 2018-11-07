@@ -42,7 +42,7 @@
                <graphic>
                   <ImageView fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../../Icons/organization.png" />
+                        <Image url="@../../resources/Icons/organization.png" />
                      </image>
                   </ImageView>
                </graphic>
@@ -57,7 +57,7 @@
                <graphic>
                   <ImageView fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../../Icons/gender-neutral-user.png" />
+                        <Image url="@../../resources/Icons/gender-neutral-user.png" />
                      </image>
                   </ImageView>
                </graphic>
@@ -72,7 +72,7 @@
                <graphic>
                   <ImageView fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../../Icons/briefcase.png" />
+                        <Image url="@../../resources/Icons/briefcase.png" />
                      </image>
                   </ImageView>
                </graphic>
