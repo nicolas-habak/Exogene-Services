@@ -40,8 +40,9 @@ public class AddCandidateController implements Initializable{
 	private ObservableList<CandidateInfo> data;
 	private FilteredList filter;
 	
-	private String candidateInsert = "INSERT INTO Candidates(fname,mname,lname,salutation,status,available,address,emailWork,emailPersonal,notes,currentSalary,"
-			+ "desiredSalary,placement,rotation,progress) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+	private String candidateInsert = "INSERT INTO Candidates(fname,mname,lname,salutation,status,addressNo,addressStreet,"
+			+ "addressPostalCode,addressProvince,addressCountry,currentSalary,desiredSalary,clientID,rotation,employType) "
+			+ "VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
 	
 	public void initialize(URL url, ResourceBundle rb) {
 		
