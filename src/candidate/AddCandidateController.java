@@ -41,8 +41,8 @@ public class AddCandidateController implements Initializable{
 	private FilteredList filter;
 	
 	private String candidateInsert = "INSERT INTO Candidates(fname,mname,lname,salutation,status,addressNo,addressStreet,"
-			+ "addressPostalCode,addressProvince,addressCountry,currentSalary,desiredSalary,clientID,rotation,employType) "
-			+ "VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+			+ "addressPostalCode,addressProvince,addressCountry,currentSalary,desiredSalary,rotation,employType) "
+			+ "VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
 	
 	public void initialize(URL url, ResourceBundle rb) {
 		

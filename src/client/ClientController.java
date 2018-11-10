@@ -33,14 +33,7 @@ import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 
 public class ClientController implements Initializable{
-	
-	/* Client attributes */
-	@FXML private String name;
-	@FXML private String industryType;
-	@FXML private String parentCompany;
-	@FXML private String status;
-	@FXML private String fee;
-		
+
 	/* Client table */
 	@FXML private TableView<ClientInfo> clientTable;
 	
@@ -48,7 +41,6 @@ public class ClientController implements Initializable{
 	@FXML private TableColumn<ClientInfo, String> columnName;
 	@FXML private TableColumn<ClientInfo, String> columnIndustryType;
 	@FXML private TableColumn<ClientInfo, String> columnParentCompany;
-	@FXML private TableColumn<ClientInfo, String> columnStatus;
 	@FXML private TableColumn<ClientInfo, String> columnFee;
 	@FXML private TableColumn<ClientInfo, Button> columnDetailsbtn;
 	
@@ -60,13 +52,12 @@ public class ClientController implements Initializable{
 	private FilteredList filter;
 	
 	private String clientQuery = "SELECT * FROM Clients";
-	
+
 	public void initialize(URL url, ResourceBundle rb) {
-		String uid;
+		String id;
 		String name;
 		String industryType;
 		String parentCompany;
-		String status;
 		String fee;
 		
 		this.DBConn = new DBConnection();
@@ -78,14 +69,13 @@ public class ClientController implements Initializable{
 			ResultSet rs = conn.createStatement().executeQuery(clientQuery);
 
 			while(rs.next()) {
-				uid = rs.getString(1);
+                id = rs.getString(1);
 				name = rs.getString(2);
 				industryType = rs.getString(3);
 				parentCompany = rs.getString(4);
-				status = rs.getString(5);
-				fee = rs.getString(6);
+				fee = rs.getString(5);
 				
-				this.data.add(new ClientInfo(uid, name, industryType, parentCompany, status, fee));
+				this.data.add(new ClientInfo(id, name, industryType, parentCompany, fee));
 			}
 			filter = new FilteredList(data, e->true);
 			conn.close();
@@ -97,7 +87,6 @@ public class ClientController implements Initializable{
 		this.columnName.setCellValueFactory(new PropertyValueFactory<ClientInfo, String>("name"));
 		this.columnIndustryType.setCellValueFactory(new PropertyValueFactory<ClientInfo, String>("industryType"));
 		this.columnParentCompany.setCellValueFactory(new PropertyValueFactory<ClientInfo, String>("parentCompany"));
-		this.columnStatus.setCellValueFactory(new PropertyValueFactory<ClientInfo, String>("status"));
 		this.columnFee.setCellValueFactory(new PropertyValueFactory<ClientInfo, String>("fee"));
 		this.columnDetailsbtn.setCellValueFactory(new PropertyValueFactory<ClientInfo, Button>("btnDetails"));
 		
@@ -130,8 +119,6 @@ public class ClientController implements Initializable{
 				else if (clientInfo.industryTypeProperty().get().toLowerCase().contains(newValue.toLowerCase()))
 					return true;
 				else if (clientInfo.parentCompanyProperty().get().toLowerCase().contains(newValue.toLowerCase()))
-					return true;
-				else if (clientInfo.statusProperty().get().toLowerCase().contains(newValue.toLowerCase()))
 					return true;
 				else if (clientInfo.feeProperty().get().toLowerCase().contains(newValue.toLowerCase()))
 					return true;

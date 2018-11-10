@@ -82,7 +82,7 @@ public class ClientDetailsController implements Initializable {
 			status = rs.getString(5);
 			fee = rs.getString(6);
 			
-			client = new ClientInfo(null, name, industryType, parentCompany, status, fee);
+			client = new ClientInfo(null, name, industryType, parentCompany, fee);
 			
 			lblName.setText(name);
 			lblIndustryType.setText(industryType);

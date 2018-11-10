@@ -113,6 +113,15 @@ public class AddContactController implements Initializable{
 
 	@FXML
 	private void addEmail(ActionEvent e){
+		Label lblEmailName = new Label();
+		Label lblEmailInput = new Label();
 
+		lblEmailName.setText(textEmailName.getText());
+		lblEmailInput.setText(textEmailInput.getText());
+
+		gridEmail.add(lblEmailName, 0, gridEmailRow);
+		gridEmail.add(lblEmailInput, 1, gridEmailRow);
+
+		gridEmailRow++;
 	}
 }

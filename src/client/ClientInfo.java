@@ -18,16 +18,14 @@ public class ClientInfo {
 	final StringProperty name;
 	final StringProperty industryType;
 	final StringProperty parentCompany;
-	final StringProperty status;
 	final StringProperty fee;
 	Button btnDetails;
 	
-	public ClientInfo(String uid, String name, String industryType, String parentCompany, String status, String fee) {
+	public ClientInfo(String uid, String name, String industryType, String parentCompany, String fee) {
 		this.uid = new SimpleStringProperty(uid);
 		this.name = new SimpleStringProperty(name);
 		this.industryType = new SimpleStringProperty(industryType);
 		this.parentCompany = new SimpleStringProperty(parentCompany);
-		this.status = new SimpleStringProperty(status);
 		this.fee = new SimpleStringProperty(fee);
 		this.btnDetails = new Button("Details");
 		
@@ -84,14 +82,6 @@ public class ClientInfo {
 	
 	public void setParentCompany(String parentCompany) {
 		this.parentCompany.set(parentCompany);
-	}
-
-	public StringProperty statusProperty() {
-		return status;
-	}
-	
-	public void setStatus(String status) {
-		this.status.set(status);
 	}
 	
 	public StringProperty feeProperty() {
