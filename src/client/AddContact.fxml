@@ -14,7 +14,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane minHeight="-Infinity" minWidth="-Infinity" prefWidth="502.0" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="client.AddContactController">
+<BorderPane fx:id="addContactPane" minHeight="-Infinity" minWidth="-Infinity" prefWidth="502.0" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="client.AddContactController">
    <top>
       <Label style="-fx-font-weight: 700;" text="New Contact" BorderPane.alignment="CENTER">
          <font>
@@ -38,6 +38,7 @@
                 <RowConstraints maxHeight="50.0" minHeight="42.0" prefHeight="50.0" vgrow="SOMETIMES" />
                 <RowConstraints maxHeight="42.0" minHeight="24.0" prefHeight="50.0" vgrow="SOMETIMES" />
                   <RowConstraints maxHeight="79.0" minHeight="26.0" prefHeight="48.0" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="79.0" minHeight="26.0" prefHeight="48.0" vgrow="SOMETIMES" />
                   <RowConstraints vgrow="SOMETIMES" />
               </rowConstraints>
                <children>
@@ -51,7 +52,7 @@
                         <Font size="20.0" />
                      </font>
                   </Label>
-                  <TextField GridPane.columnIndex="1">
+                  <TextField fx:id="textFname" GridPane.columnIndex="1">
                      <font>
                         <Font size="16.0" />
                      </font>
@@ -59,7 +60,7 @@
                         <Insets left="20.0" />
                      </GridPane.margin>
                   </TextField>
-                  <TextField GridPane.columnIndex="1" GridPane.rowIndex="1">
+                  <TextField fx:id="textLname" GridPane.columnIndex="1" GridPane.rowIndex="1">
                      <font>
                         <Font size="16.0" />
                      </font>
@@ -77,7 +78,7 @@
                         <Font size="20.0" />
                      </font>
                   </Label>
-                  <TextField GridPane.columnIndex="1" GridPane.rowIndex="2">
+                  <TextField fx:id="textTitle" GridPane.columnIndex="1" GridPane.rowIndex="2">
                      <font>
                         <Font size="16.0" />
                      </font>
@@ -85,7 +86,20 @@
                         <Insets left="20.0" />
                      </GridPane.margin>
                   </TextField>
-                  <TextField GridPane.columnIndex="1" GridPane.rowIndex="3">
+                  <TextField fx:id="textDepartment" GridPane.columnIndex="1" GridPane.rowIndex="3">
+                     <font>
+                        <Font size="16.0" />
+                     </font>
+                     <GridPane.margin>
+                        <Insets left="20.0" />
+                     </GridPane.margin>
+                  </TextField>
+                  <Label layoutX="10.0" layoutY="161.0" text="Language" GridPane.rowIndex="4">
+                     <font>
+                        <Font size="20.0" />
+                     </font>
+                  </Label>
+                  <TextField fx:id="textLanguage" layoutX="174.0" layoutY="158.0" GridPane.columnIndex="1" GridPane.rowIndex="4">
                      <font>
                         <Font size="16.0" />
                      </font>

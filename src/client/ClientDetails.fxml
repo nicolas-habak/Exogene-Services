@@ -75,6 +75,7 @@
                   <TableColumn fx:id="columnName" prefWidth="207.0" text="Name" />
                 <TableColumn fx:id="columnTitle" prefWidth="149.0" text="Title" />
                 <TableColumn fx:id="columnDepartment" prefWidth="154.0" text="Department" />
+                  <TableColumn fx:id="columnDetailsbtn" prefWidth="154.0" />
               </columns>
             </TableView>
             <Button layoutX="835.0" layoutY="8.0" mnemonicParsing="false" onAction="#addContact">
