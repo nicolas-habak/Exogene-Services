@@ -1,16 +1,11 @@
-package client;
+package joborder;
 
-import java.net.URL;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.util.ResourceBundle;
-
+import client.ClientInfo;
+import client.ContactInfo;
+import client.JobsInfo;
 import dbUtil.DBConnection;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.collections.transformation.FilteredList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -24,7 +19,13 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 
-public class ClientDetailsController implements Initializable {
+import java.net.URL;
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ResourceBundle;
+
+public class JobOrderDetailsController implements Initializable {
 
 	/* Client information fields */
 	@FXML private Label lblName;
@@ -104,7 +105,7 @@ public class ClientDetailsController implements Initializable {
 		String phoneNumber;
 		String email;
 		String notes;
-
+		
 		String contactsQuery = "SELECT NAME, DEPARTMENT, TITLE, PHONENUMBER, EMAIL, NOTES FROM CandidateContact WHERE COMPANY = '" + clientName + "'";
 		
 		this.DBConn = new DBConnection();
@@ -130,7 +131,7 @@ public class ClientDetailsController implements Initializable {
 		catch(SQLException e) {
 			System.err.println("Error: " + e);
 		}		
-
+				
 		this.columnDepartment.setCellValueFactory(new PropertyValueFactory<ContactInfo, String>("department"));
 		this.columnTitle.setCellValueFactory(new PropertyValueFactory<ContactInfo, String>("title"));
 		this.columnName.setCellValueFactory(new PropertyValueFactory<ContactInfo, String>("name"));
@@ -181,9 +182,9 @@ public class ClientDetailsController implements Initializable {
 		this.jobsTable.setItems(null);
 		this.jobsTable.setItems(this.dataJobs);
 	}
-	
+
 	@FXML
-	private void addContact(ActionEvent event) {
+	private void addContact(ActionEvent event){
 		try {
 			Stage userStage = new Stage();
 			FXMLLoader loader = new FXMLLoader();
@@ -191,7 +192,7 @@ public class ClientDetailsController implements Initializable {
 
 			Scene scene = new Scene(root);
 			userStage.setScene(scene);
-			userStage.setTitle("New Contact");
+			userStage.setTitle("New Job Order");
 			userStage.setResizable(false);
 			userStage.show();
 		}catch (Exception e){

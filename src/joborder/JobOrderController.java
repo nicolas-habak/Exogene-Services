@@ -1,5 +1,6 @@
 package joborder;
 
+import client.ClientInfo;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -40,7 +41,8 @@ public class JobOrderController implements Initializable{
 	@FXML private TableColumn<JobOrderInfo, String> columnStatus;
 	@FXML private TableColumn<JobOrderInfo, String> columnStatusNote;
 	@FXML private TableColumn<JobOrderInfo, String> columnStartDate;
-	
+	@FXML private TableColumn<JobOrderInfo, Button> columnDetailsbtn;
+
 	@FXML private TextField jobOrderFilter;
 	@FXML private Button btnAddJobOrder;	
 	
@@ -85,7 +87,8 @@ public class JobOrderController implements Initializable{
 		this.columnEmployType.setCellValueFactory(new PropertyValueFactory<JobOrderInfo, String>("employType"));
 		this.columnStatus.setCellValueFactory(new PropertyValueFactory<JobOrderInfo, String>("status"));
 		this.columnStatusNote.setCellValueFactory(new PropertyValueFactory<JobOrderInfo, String>("statusNote"));
-		this.columnStartDate.setCellValueFactory(new PropertyValueFactory<JobOrderInfo, String>("startDate"));		
+		this.columnStartDate.setCellValueFactory(new PropertyValueFactory<JobOrderInfo, String>("startDate"));
+		this.columnDetailsbtn.setCellValueFactory(new PropertyValueFactory<JobOrderInfo, Button>("btnDetails"));
 		
 		this.jobOrderTable.setItems(null);
 		this.jobOrderTable.setItems(this.data);

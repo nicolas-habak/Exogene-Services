@@ -12,14 +12,14 @@
 
 <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="896.0" prefWidth="1281.0" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="client.ClientDetailsController">
    <left>
-      <Pane prefHeight="393.0" prefWidth="376.0" BorderPane.alignment="CENTER">
+      <Pane prefHeight="393.0" prefWidth="364.0" BorderPane.alignment="CENTER">
          <children>
-            <Label layoutX="24.0" layoutY="84.0" text="Industry">
+            <Label layoutX="24.0" layoutY="84.0" text="Company">
                <font>
                   <Font size="20.0" />
                </font>
             </Label>
-            <Label layoutX="24.0" layoutY="124.0" text="Parent Company">
+            <Label layoutX="24.0" layoutY="124.0" text="Employment Type">
                <font>
                   <Font size="20.0" />
                </font>
@@ -29,22 +29,17 @@
                   <Font size="20.0" />
                </font>
             </Label>
-            <Label layoutX="24.0" layoutY="204.0" text="Fee">
-               <font>
-                  <Font size="20.0" />
-               </font>
-            </Label>
             <Label fx:id="lblName" layoutX="144.0" layoutY="21.0" text="Name">
                <font>
                   <Font size="25.0" />
                </font>
             </Label>
-            <Label fx:id="lblIndustryType" layoutX="204.0" layoutY="84.0" text="Industry">
+            <Label fx:id="lblIndustryType" layoutX="204.0" layoutY="84.0" text="Company">
                <font>
                   <Font size="20.0" />
                </font>
             </Label>
-            <Label fx:id="lblParentCompany" layoutX="204.0" layoutY="124.0" text="Parent Company">
+            <Label fx:id="lblParentCompany" layoutX="204.0" layoutY="124.0" text="Employment Type">
                <font>
                   <Font size="20.0" />
                </font>
@@ -54,43 +49,41 @@
                   <Font size="20.0" />
                </font>
             </Label>
-            <Label fx:id="lblFee" layoutX="204.0" layoutY="204.0" text="Fee">
-               <font>
-                  <Font size="20.0" />
-               </font>
-            </Label>
          </children>
       </Pane>
    </left>
    <center>
-      <Pane style="-fx-background-color: #eee;" BorderPane.alignment="CENTER">
+      <Pane prefHeight="323.0" prefWidth="869.0" style="-fx-background-color: #eee;" BorderPane.alignment="CENTER">
          <children>
-            <Label layoutX="14.0" layoutY="14.0" prefHeight="36.0" prefWidth="114.0" text="Contacts">
+            <Label layoutX="11.0" layoutY="10.0" prefHeight="40.0" prefWidth="117.0" style="-fx-font-weight: 500;" text="Contacts">
                <font>
-                  <Font size="25.0" />
+                  <Font size="20.0" />
                </font>
             </Label>
-            <TableView fx:id="contactsTable" layoutY="63.0" prefHeight="370.0" prefWidth="905.0">
+            <TableView fx:id="contactsTable" layoutY="59.0" prefHeight="387.0" prefWidth="918.0">
               <columns>
-                  <TableColumn fx:id="columnName" prefWidth="207.0" text="Name" />
-                <TableColumn fx:id="columnTitle" prefWidth="149.0" text="Title" />
-                <TableColumn fx:id="columnDepartment" prefWidth="154.0" text="Department" />
+                <TableColumn fx:id="columnDepartment" prefWidth="122.0" text="Department" />
+                <TableColumn fx:id="columnTitle" prefWidth="65.0" text="Title" />
+                  <TableColumn fx:id="columnName" prefWidth="153.0" text="Name" />
+                  <TableColumn fx:id="columnPhone" prefWidth="126.0" text="Phone" />
+                  <TableColumn fx:id="columnEmail" prefWidth="146.0" text="Email" />
+                  <TableColumn fx:id="columnNotes" prefWidth="204.0" text="Notes" />
+                  <TableColumn fx:id="columnRemoveBtn" prefWidth="100.0" />
               </columns>
             </TableView>
-            <Button layoutX="835.0" layoutY="8.0" mnemonicParsing="false" onAction="#addContact">
+            <Button layoutX="852.0" layoutY="6.0" mnemonicParsing="false" onAction="#addContact">
                <graphic>
                   <ImageView fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../../resources/Icons/plus-math.png" />
                      </image>
                   </ImageView>
-               </graphic>
-            </Button>
+               </graphic></Button>
          </children>
       </Pane>
    </center>
    <bottom>
-      <Pane prefHeight="473.0" prefWidth="1281.0" style="-fx-background-color: #eee;" BorderPane.alignment="CENTER">
+      <Pane prefHeight="479.0" prefWidth="1281.0" style="-fx-background-color: #eee;" BorderPane.alignment="CENTER">
          <children>
             <Label layoutX="14.0" layoutY="1.0" style="-fx-font-weight: 500;" text="List of jobs">
                <font>

@@ -43,9 +43,9 @@ public class ClientInfo {
 			}
 			
 			ClientDetailsController display = loader.getController();
-			display.setFields(name);
-			display.setClientContactTable(name);
-			display.setContractTable(name);
+//			display.setFields(name);
+//			display.setClientContactTable(name);
+//			display.setContractTable(name);
 			
 			Parent p = loader.getRoot();
 			Stage stage = new Stage();
