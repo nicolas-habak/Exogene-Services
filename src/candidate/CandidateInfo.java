@@ -13,44 +13,38 @@ import javafx.scene.control.Button;
 import javafx.stage.Stage;
 
 public class CandidateInfo {
-	final StringProperty uid;
+	final StringProperty id;
 	final StringProperty salutation;
 	final StringProperty fname;
 	final StringProperty mname;
 	final StringProperty lname;
-	final StringProperty name;
-	final StringProperty status;
-	final StringProperty available;
-	final StringProperty address;
-	final StringProperty workEmail;
-	final StringProperty personalEmail;
-	final StringProperty notes;
+	final StringProperty addressNo;
+	final StringProperty addressStreet;
+	final StringProperty addressPostalCode;
+	final StringProperty addressProvince;
+	final StringProperty addressCountry;
 	final StringProperty currentSalary;
 	final StringProperty desiredSalary;
-	final StringProperty placement;
 	final StringProperty rotation;
-	final StringProperty progress;
+	final StringProperty employType;
 	Button btnDetails;
 	
-	public CandidateInfo(String uid, String salutation, String fname, String mname, String lname, String name, String status, String available, String address, 
-			String workEmail, String personalEmail, String notes, String currentSalary, String desiredSalary, String placement, String rotation, String progress) {
-		this.uid = new SimpleStringProperty(uid);
+	public CandidateInfo(String id, String salutation, String fname, String mname, String lname, String addressNo, String addressStreet, String addressPostalCode,
+			String addressProvince, String addressCountry, String currentSalary, String desiredSalary, String rotation, String employType) {
+		this.id = new SimpleStringProperty(id);
 		this.salutation = new SimpleStringProperty(salutation);
 		this.fname = new SimpleStringProperty(fname);
 		this.mname = new SimpleStringProperty(mname);
 		this.lname = new SimpleStringProperty(lname);
-		this.name = new SimpleStringProperty(name);
-		this.status = new SimpleStringProperty(status);
-		this.available = new SimpleStringProperty(available);
-		this.address = new SimpleStringProperty(address);
-		this.workEmail = new SimpleStringProperty(workEmail);
-		this.personalEmail = new SimpleStringProperty(personalEmail);
-		this.notes = new SimpleStringProperty(notes);
+		this.addressNo = new SimpleStringProperty(addressNo);
+		this.addressStreet = new SimpleStringProperty(addressStreet);
+		this.addressPostalCode = new SimpleStringProperty(addressPostalCode);
+		this.addressProvince = new SimpleStringProperty(addressProvince);
+		this.addressCountry = new SimpleStringProperty(addressCountry);
 		this.currentSalary = new SimpleStringProperty(currentSalary);
 		this.desiredSalary = new SimpleStringProperty(desiredSalary);
-		this.placement = new SimpleStringProperty(placement);
 		this.rotation = new SimpleStringProperty(rotation);
-		this.progress = new SimpleStringProperty(progress);
+		this.employType = new SimpleStringProperty(employType);
 		this.btnDetails = new Button("Details");
 		
 		btnDetails.setOnAction(e -> {
@@ -74,35 +68,39 @@ public class CandidateInfo {
 			stage.show();
 		});
 	}
-	
-	public StringProperty uidProperty() {
-		return uid;
+
+	public StringProperty idProperty() {
+		return id;
 	}
-	
-	public void setUid(String uid) {
-		this.uid.set(uid);
+
+	public void setId(String id) {
+		this.id.set(id);
 	}
-	
+
 	public StringProperty salutationProperty() {
 		return salutation;
 	}
-	
+
 	public void setSalutation(String salutation) {
 		this.salutation.set(salutation);
 	}
-	
+
 	public StringProperty fnameProperty() {
 		return fname;
 	}
-	
+
 	public void setFname(String fname) {
 		this.fname.set(fname);
 	}
-	
+
+	public StringProperty nameProperty() {
+		return new SimpleStringProperty(fname + " " + mname + " " + lname);
+	}
+
 	public StringProperty mnameProperty() {
 		return mname;
 	}
-	
+
 	public void setMname(String mname) {
 		this.mname.set(mname);
 	}
@@ -114,107 +112,79 @@ public class CandidateInfo {
 	public void setLname(String lname) {
 		this.lname.set(lname);
 	}
-	
-	public StringProperty nameProperty() {
-		return name;
+
+	public StringProperty addressNoProperty() {
+		return addressNo;
 	}
 
-	public void setName(String name) {
-		this.name.set(name);
-	}
-	
-	public StringProperty statusProperty() {
-		return status;
-	}
-	
-	public void setStatus(String status) {
-		this.status.set(status);
+	public void setAddressNo(String addressNo) {
+		this.addressNo.set(addressNo);
 	}
 
-	public StringProperty availableProperty() {
-		return available;
-	}
-	
-	public void setAvailable(String available) {
-		this.available.set(available);
-	}
-	
-	public StringProperty addressProperty() {
-		return address;
-	}
-	
-	public void setAddress(String address) {
-		this.address.set(address);
+	public StringProperty addressStreetProperty() {
+		return addressStreet;
 	}
 
-	public StringProperty workEmailProperty() {
-		return workEmail;
+	public void setAddressStreet(String addressStreet) {
+		this.addressStreet.set(addressStreet);
 	}
-	
-	public void setWorkEmail(String workEmail) {
-		this.workEmail.set(workEmail);
+
+	public StringProperty addressPostalCodeProperty() {
+		return addressPostalCode;
 	}
-	
-	public StringProperty personalEmailProperty() {
-		return personalEmail;
+
+	public void setAddressPostalCode(String addressPostalCode) {
+		this.addressPostalCode.set(addressPostalCode);
 	}
-	
-	public void setEmailPersonal(String personalEmail) {
-		this.personalEmail.set(personalEmail);
+
+	public StringProperty addressProvinceProperty() {
+		return addressProvince;
 	}
-	
-	public StringProperty notesProperty() {
-		return notes;
+
+	public void setAddressProvince(String addressProvince) {
+		this.addressProvince.set(addressProvince);
 	}
-	
-	public void setNotes(String notes) {
-		this.notes.set(notes);
+
+	public StringProperty addressCountryProperty() {
+		return addressCountry;
 	}
-	
+
+	public void setAddressCountry(String addressCountry) {
+		this.addressCountry.set(addressCountry);
+	}
+
 	public StringProperty currentSalaryProperty() {
 		return currentSalary;
 	}
-	
+
 	public void setCurrentSalary(String currentSalary) {
 		this.currentSalary.set(currentSalary);
 	}
-	
+
 	public StringProperty desiredSalaryProperty() {
 		return desiredSalary;
 	}
-	
+
 	public void setDesiredSalary(String desiredSalary) {
 		this.desiredSalary.set(desiredSalary);
 	}
-	
-	public StringProperty placementProperty() {
-		return placement;
-	}
-	
-	public void setPlacement(String placement) {
-		this.placement.set(placement);
-	}
-	
+
 	public StringProperty rotationProperty() {
 		return rotation;
 	}
-	
+
 	public void setRotation(String rotation) {
 		this.rotation.set(rotation);
 	}
-	
-	public StringProperty progressProperty() {
-		return progress;
+
+	public StringProperty employTypeProperty() {
+		return employType;
 	}
-	
-	public void setProgress(String progress) {
-		this.progress.set(progress);
+
+	public void setEmployType(String employType) {
+		this.employType.set(employType);
 	}
-	
-	public Button getBtnDetails() {
-		return btnDetails;
-	}
-	
+
 	public void setBtnDetails(Button btnDetails) {
 		this.btnDetails = btnDetails;
 	}

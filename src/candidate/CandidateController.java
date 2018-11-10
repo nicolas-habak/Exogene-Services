@@ -29,22 +29,6 @@ import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 
 public class CandidateController implements Initializable{
-	
-	/* Candidate attributes */
-	@FXML private String name;
-	@FXML private String salutation;
-	@FXML private String status;
-	@FXML private String available;
-	@FXML private String address;
-	@FXML private String workEmail;
-	@FXML private String personalEmail;
-	@FXML private String notes;
-	@FXML private String currentSalary;
-	@FXML private String desiredSalary;
-	@FXML private String placement;
-	@FXML private String rotation;
-	@FXML private String progress;
-		
 	/* Candidate table */
 	@FXML private TableView<CandidateInfo> candidateTable;
 	
@@ -74,23 +58,21 @@ public class CandidateController implements Initializable{
 	private String candidateQuery = "SELECT * FROM Candidates";
 	
 	public void initialize(URL url, ResourceBundle rb) {
-		String uid;
+		String id;
+		String salutation;
 		String fname;
 		String mname;
 		String lname;
-		String salutation;
-		String status;
-		String available;
-		String address;
-		String workEmail;
-		String personalEmail;
-		String notes;
+		String addressNo;
+		String addressStreet;
+		String addressPostalCode;
+		String addressProvince;
+		String addressCountry;
 		String currentSalary;
 		String desiredSalary;
-		String placement;
 		String rotation;
-		String progress;
-		
+		String remployType;
+
 		String name;
 		
 		this.DBConn = new DBConnection();
@@ -102,23 +84,21 @@ public class CandidateController implements Initializable{
 			ResultSet rs = conn.createStatement().executeQuery(candidateQuery);
 
 			while(rs.next()) {
-				uid = rs.getString(1);
+				id = rs.getString(1);
 				salutation = rs.getString(2);
 				fname = rs.getString(3);
 				mname = rs.getString(4);
 				lname = rs.getString(5);				
-				status = rs.getString(6);
-				available = rs.getString(7);
-				address = rs.getString(8);
-				workEmail = rs.getString(9);
-				personalEmail = rs.getString(10);
-				notes = rs.getString(11);
-				currentSalary = rs.getString(12);
-				desiredSalary = rs.getString(13);
-				placement = rs.getString(14);
-				rotation = rs.getString(15);
-				progress = rs.getString(16);
-				
+				addressNo = rs.getString(6);
+				addressStreet = rs.getString(7);
+				addressPostalCode = rs.getString(8);
+				addressProvince = rs.getString(9);
+				addressCountry = rs.getString(10);
+				currentSalary = rs.getString(11);
+				desiredSalary = rs.getString(12);
+				rotation = rs.getString(13);
+				remployType = rs.getString(14);
+
 				name = fname + " " + mname + " " + lname;
 				
 				this.data.add(new CandidateInfo(uid, salutation, fname, mname, lname, name, status, available, address, workEmail, personalEmail, notes, 
