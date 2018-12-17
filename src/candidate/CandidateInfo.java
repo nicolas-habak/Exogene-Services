@@ -20,7 +20,6 @@ public class CandidateInfo {
 	final private StringProperty fname;
 	final private StringProperty mname;
 	final private StringProperty lname;
-	final private StringProperty addressNo;
 	final private StringProperty addressStreet;
 	final private StringProperty addressCity;
 	final private StringProperty addressProvince;
@@ -31,7 +30,7 @@ public class CandidateInfo {
 	final private StringProperty rotation;
 	final private StringProperty employType;
 	
-	public CandidateInfo(String id, String salutation, String fname, String mname, String lname, String addressNo, String addressStreet, String addressCity,
+	public CandidateInfo(String id, String salutation, String fname, String mname, String lname, String addressStreet, String addressCity,
 						 String addressProvince, String addressPostalCode, String addressCountry, String currentSalary, String desiredSalary, String rotation,
 						 String employType) {
 		this.id = new SimpleStringProperty(id);
@@ -39,7 +38,6 @@ public class CandidateInfo {
 		this.fname = new SimpleStringProperty(fname);
 		this.mname = new SimpleStringProperty(mname);
 		this.lname = new SimpleStringProperty(lname);
-		this.addressNo = new SimpleStringProperty(addressNo);
 		this.addressStreet = new SimpleStringProperty(addressStreet);
 		this.addressPostalCode = new SimpleStringProperty(addressPostalCode);
 		this.addressProvince = new SimpleStringProperty(addressProvince);
@@ -103,14 +101,6 @@ public class CandidateInfo {
 		return new SimpleStringProperty(String.join(" ", name));
 	}
 
-	public StringProperty addressNoProperty() {
-		return addressNo;
-	}
-
-	public void setAddressNo(String addressNo) {
-		this.addressNo.set(addressNo);
-	}
-
 	public StringProperty addressStreetProperty() {
 		return addressStreet;
 	}
@@ -154,8 +144,6 @@ public class CandidateInfo {
 	public StringProperty addressLn1Property() {
 		List<String> address = new ArrayList<String>();
 
-		if(addressNo.isNotEmpty().get())
-			address.add(addressNo.get());
 		if(addressStreet.isNotEmpty().get())
 			address.add(addressStreet.get());
 
@@ -172,7 +160,7 @@ public class CandidateInfo {
 		if(addressPostalCode.isNotEmpty().get())
 			address.add(addressPostalCode.get());
 
-		return new SimpleStringProperty(String.join(" ", address));
+		return new SimpleStringProperty(String.join(", ", address));
 	}
 
 	public StringProperty addressLn3Property() {
@@ -186,8 +174,6 @@ public class CandidateInfo {
 
 	public StringProperty addressProperty() {
 		List<String> address = new ArrayList<String>();
-		if(addressNo.isNotEmpty().get())
-			address.add(addressNo.get());
 		if(addressStreet.isNotEmpty().get())
 			address.add(addressStreet.get());
 		if(addressCity.isNotEmpty().get())

@@ -47,16 +47,21 @@ public class CandidateController implements Initializable{
 	private DBConnection DBConn;
 	private ObservableList<CandidateInfo> data;
 	private FilteredList filter;
+
+	private Stage userStage = null;
 	
 	private String candidateQuery = "SELECT * FROM Candidates";
 	
 	public void initialize(URL url, ResourceBundle rb) {
+		setFields();
+	}
+
+	private void setFields() {
 		String id;
 		String salutation;
 		String fname;
 		String mname;
 		String lname;
-		String addressNo;
 		String addressStreet;
 		String addressCity;
 		String addressProvince;
@@ -68,13 +73,13 @@ public class CandidateController implements Initializable{
 		String employType;
 
 		String name;
-		
+
 		this.DBConn = new DBConnection();
 
 		try {
 			Connection conn = DBConnection.getConnection();
 			this.data = FXCollections.observableArrayList();
-						
+
 			ResultSet rs = conn.createStatement().executeQuery(candidateQuery);
 
 			while(rs.next()) {
@@ -82,19 +87,18 @@ public class CandidateController implements Initializable{
 				salutation = rs.getString(2);
 				fname = rs.getString(3);
 				mname = rs.getString(4);
-				lname = rs.getString(5);				
-				addressNo = rs.getString(6);
-				addressStreet = rs.getString(7);
-				addressCity = rs.getString(8);
-				addressProvince = rs.getString(9);
-				addressPostalCode = rs.getString(10);
-				addressCountry = rs.getString(11);
-				currentSalary = rs.getString(12);
-				desiredSalary = rs.getString(13);
-				rotation = rs.getString(14);
-				employType = rs.getString(15);
-				
-				this.data.add(new CandidateInfo(id, salutation, fname, mname, lname, addressNo, addressStreet, addressCity,
+				lname = rs.getString(5);
+				addressStreet = rs.getString(6);
+				addressCity = rs.getString(7);
+				addressProvince = rs.getString(8);
+				addressPostalCode = rs.getString(9);
+				addressCountry = rs.getString(10);
+				currentSalary = rs.getString(11);
+				desiredSalary = rs.getString(12);
+				rotation = rs.getString(13);
+				employType = rs.getString(14);
+
+				this.data.add(new CandidateInfo(id, salutation, fname, mname, lname, addressStreet, addressCity,
 						addressProvince, addressPostalCode, addressCountry, currentSalary, desiredSalary, rotation, employType));
 			}
 			filter = new FilteredList(data, e->true);
@@ -107,7 +111,7 @@ public class CandidateController implements Initializable{
 		catch(NullPointerException e) {
 			System.err.println("Error: " + e);
 		}
-		
+
 		this.columnName.setCellValueFactory(new PropertyValueFactory<CandidateInfo, String>("name"));
 		this.columnSalutation.setCellValueFactory(new PropertyValueFactory<CandidateInfo, String>("salutation"));
 		this.columnAddress.setCellValueFactory(new PropertyValueFactory<CandidateInfo, String>("address"));
@@ -128,19 +132,26 @@ public class CandidateController implements Initializable{
 			});
 			return row ;
 		});
-	}	
-	
+	}
+
 	@FXML
 	private void addNewCandidate(ActionEvent event) throws IOException {
-		Stage userStage = new Stage();
-		FXMLLoader loader = new FXMLLoader();
-		Pane root = (Pane)loader.load(getClass().getResource("AddCandidate.fxml").openStream());
-					
-		Scene scene = new Scene(root);
-		userStage.setScene(scene);
-		userStage.setTitle("New Candidate");
-		userStage.setResizable(false);
-		userStage.show();
+		if(userStage == null) {
+			userStage = new Stage();
+			FXMLLoader loader = new FXMLLoader();
+			Pane root = (Pane)loader.load(getClass().getResource("AddCandidate.fxml").openStream());
+
+			Scene scene = new Scene(root);
+			userStage.setScene(scene);
+			userStage.setTitle("New Candidate");
+			userStage.setResizable(false);
+			userStage.showAndWait();
+			userStage = null;
+			setFields();
+		} else {
+			userStage.setAlwaysOnTop(true);
+			userStage.setAlwaysOnTop(false);
+		}
 	}
 	
 	@SuppressWarnings("unchecked")
