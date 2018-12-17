@@ -1,6 +1,8 @@
 package candidate;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -13,24 +15,25 @@ import javafx.scene.control.Button;
 import javafx.stage.Stage;
 
 public class CandidateInfo {
-	final StringProperty id;
-	final StringProperty salutation;
-	final StringProperty fname;
-	final StringProperty mname;
-	final StringProperty lname;
-	final StringProperty addressNo;
-	final StringProperty addressStreet;
-	final StringProperty addressPostalCode;
-	final StringProperty addressProvince;
-	final StringProperty addressCountry;
-	final StringProperty currentSalary;
-	final StringProperty desiredSalary;
-	final StringProperty rotation;
-	final StringProperty employType;
-	Button btnDetails;
+	final private StringProperty id;
+	final private StringProperty salutation;
+	final private StringProperty fname;
+	final private StringProperty mname;
+	final private StringProperty lname;
+	final private StringProperty addressNo;
+	final private StringProperty addressStreet;
+	final private StringProperty addressCity;
+	final private StringProperty addressProvince;
+	final private StringProperty addressPostalCode;
+	final private StringProperty addressCountry;
+	final private StringProperty currentSalary;
+	final private StringProperty desiredSalary;
+	final private StringProperty rotation;
+	final private StringProperty employType;
 	
-	public CandidateInfo(String id, String salutation, String fname, String mname, String lname, String addressNo, String addressStreet, String addressPostalCode,
-			String addressProvince, String addressCountry, String currentSalary, String desiredSalary, String rotation, String employType) {
+	public CandidateInfo(String id, String salutation, String fname, String mname, String lname, String addressNo, String addressStreet, String addressCity,
+						 String addressProvince, String addressPostalCode, String addressCountry, String currentSalary, String desiredSalary, String rotation,
+						 String employType) {
 		this.id = new SimpleStringProperty(id);
 		this.salutation = new SimpleStringProperty(salutation);
 		this.fname = new SimpleStringProperty(fname);
@@ -40,33 +43,12 @@ public class CandidateInfo {
 		this.addressStreet = new SimpleStringProperty(addressStreet);
 		this.addressPostalCode = new SimpleStringProperty(addressPostalCode);
 		this.addressProvince = new SimpleStringProperty(addressProvince);
+		this.addressCity = new SimpleStringProperty(addressCity);
 		this.addressCountry = new SimpleStringProperty(addressCountry);
 		this.currentSalary = new SimpleStringProperty(currentSalary);
 		this.desiredSalary = new SimpleStringProperty(desiredSalary);
 		this.rotation = new SimpleStringProperty(rotation);
 		this.employType = new SimpleStringProperty(employType);
-		this.btnDetails = new Button("Details");
-		
-		btnDetails.setOnAction(e -> {
-			FXMLLoader loader = new FXMLLoader();
-			loader.setLocation(getClass().getResource("CandidateDetails.fxml"));
-			
-			try {
-				loader.load();
-			} catch (IOException ex) {
-				// TODO Auto-generated catch block
-				Logger.getLogger(CandidateInfo.class.getName()).log(Level.SEVERE, null, ex);
-			}
-			
-			CandidateDetailsController display = loader.getController();
-			display.setFields(fname, mname, lname);
-//			display.setClientInterviewTable(name);
-			
-			Parent p = loader.getRoot();
-			Stage stage = new Stage();
-			stage.setScene(new Scene(p));
-			stage.show();
-		});
 	}
 
 	public StringProperty idProperty() {
@@ -93,10 +75,6 @@ public class CandidateInfo {
 		this.fname.set(fname);
 	}
 
-	public StringProperty nameProperty() {
-		return new SimpleStringProperty(fname + " " + mname + " " + lname);
-	}
-
 	public StringProperty mnameProperty() {
 		return mname;
 	}
@@ -113,6 +91,18 @@ public class CandidateInfo {
 		this.lname.set(lname);
 	}
 
+	public StringProperty nameProperty() {
+		List<String> name = new ArrayList<String>();
+		if (fname.isNotEmpty().get())
+			name.add(fname.get());
+		if (mname.isNotEmpty().get())
+			name.add(mname.get());
+		if (lname.isNotEmpty().get())
+			name.add(lname.get());
+
+		return new SimpleStringProperty(String.join(" ", name));
+	}
+
 	public StringProperty addressNoProperty() {
 		return addressNo;
 	}
@@ -127,6 +117,14 @@ public class CandidateInfo {
 
 	public void setAddressStreet(String addressStreet) {
 		this.addressStreet.set(addressStreet);
+	}
+
+	public StringProperty addressCityProperty() {
+		return addressCity;
+	}
+
+	public void setAddressCity(String addressCity) {
+		this.addressCity.set(addressCity);
 	}
 
 	public StringProperty addressPostalCodeProperty() {
@@ -151,6 +149,57 @@ public class CandidateInfo {
 
 	public void setAddressCountry(String addressCountry) {
 		this.addressCountry.set(addressCountry);
+	}
+
+	public StringProperty addressLn1Property() {
+		List<String> address = new ArrayList<String>();
+
+		if(addressNo.isNotEmpty().get())
+			address.add(addressNo.get());
+		if(addressStreet.isNotEmpty().get())
+			address.add(addressStreet.get());
+
+		return new SimpleStringProperty(String.join(" ", address));
+	}
+
+	public StringProperty addressLn2Property() {
+		List<String> address = new ArrayList<String>();
+
+		if(addressCity.isNotEmpty().get())
+			address.add(addressCity.get());
+		if(addressProvince.isNotEmpty().get())
+			address.add(addressProvince.get());
+		if(addressPostalCode.isNotEmpty().get())
+			address.add(addressPostalCode.get());
+
+		return new SimpleStringProperty(String.join(" ", address));
+	}
+
+	public StringProperty addressLn3Property() {
+		List<String> address = new ArrayList<String>();
+
+		if(addressCountry.isNotEmpty().get())
+			address.add(addressCountry.get());
+
+		return new SimpleStringProperty(String.join(" ", address));
+	}
+
+	public StringProperty addressProperty() {
+		List<String> address = new ArrayList<String>();
+		if(addressNo.isNotEmpty().get())
+			address.add(addressNo.get());
+		if(addressStreet.isNotEmpty().get())
+			address.add(addressStreet.get());
+		if(addressCity.isNotEmpty().get())
+			address.add(addressCity.get());
+		if(addressProvince.isNotEmpty().get())
+			address.add(addressProvince.get());
+		if(addressPostalCode.isNotEmpty().get())
+			address.add(addressPostalCode.get());
+		if(addressCountry.isNotEmpty().get())
+			address.add(addressCountry.get());
+
+		return new SimpleStringProperty(String.join(" ", address));
 	}
 
 	public StringProperty currentSalaryProperty() {
@@ -185,7 +234,27 @@ public class CandidateInfo {
 		this.employType.set(employType);
 	}
 
-	public void setBtnDetails(Button btnDetails) {
-		this.btnDetails = btnDetails;
+	public void displayDetails() {
+		FXMLLoader loader = new FXMLLoader();
+		loader.setLocation(getClass().getResource("CandidateDetails.fxml"));
+
+		try {
+			loader.load();
+		} catch (IOException ex) {
+			// TODO Auto-generated catch block
+			Logger.getLogger(CandidateInfo.class.getName()).log(Level.SEVERE, null, ex);
+		}
+
+		CandidateDetailsController display = loader.getController();
+
+		display.setData(id.get(), nameProperty().get(), salutation.get(),
+				addressLn1Property().get(), addressLn2Property().get(), addressLn3Property().get(),
+				currentSalary.get(), desiredSalary.get(), rotation.get(), employType.get());
+//			display.setClientInterviewTable(name);
+
+		Parent p = loader.getRoot();
+		Stage stage = new Stage();
+		stage.setScene(new Scene(p));
+		stage.show();
 	}
 }
