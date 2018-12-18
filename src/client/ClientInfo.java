@@ -28,28 +28,6 @@ public class ClientInfo {
 		this.parentCompany = new SimpleStringProperty(parentCompany);
 		this.fee = new SimpleStringProperty(fee);
 		this.btnDetails = new Button("Details");
-		
-		btnDetails.setOnAction(e -> {
-			FXMLLoader loader = new FXMLLoader();
-			loader.setLocation(getClass().getResource("ClientDetails.fxml"));
-			
-			try {
-				loader.load();
-			} catch (IOException ex) {
-				// TODO Auto-generated catch block
-				Logger.getLogger(ClientInfo.class.getName()).log(Level.SEVERE, null, ex);
-			}
-			
-			ClientDetailsController display = loader.getController();
-//			display.setFields(name);
-//			display.setClientContactTable(name);
-//			display.setContractTable(name);
-			
-			Parent p = loader.getRoot();
-			Stage stage = new Stage();
-			stage.setScene(new Scene(p));
-			stage.show();
-		});
 	}
 	
 	public StringProperty uidProperty() {
@@ -98,5 +76,27 @@ public class ClientInfo {
 	
 	public void setBtnDetails(Button btnDetails) {
 		this.btnDetails = btnDetails;
+	}
+
+	public void displayDetails() {
+		FXMLLoader loader = new FXMLLoader();
+		loader.setLocation(getClass().getResource("ClientDetails.fxml"));
+
+		try {
+			loader.load();
+		} catch (IOException ex) {
+			// TODO Auto-generated catch block
+			Logger.getLogger(ClientInfo.class.getName()).log(Level.SEVERE, null, ex);
+		}
+
+		ClientDetailsController display = loader.getController();
+//			display.setFields(name);
+//			display.setClientContactTable(name);
+//			display.setContractTable(name);
+
+		Parent p = loader.getRoot();
+		Stage stage = new Stage();
+		stage.setScene(new Scene(p));
+		stage.show();
 	}
 }

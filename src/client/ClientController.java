@@ -2,8 +2,7 @@ package client;
 
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.event.ActionEvent;
 
 import java.io.IOException;
@@ -24,8 +23,6 @@ import javafx.collections.transformation.SortedList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.BorderPane;
@@ -94,10 +91,20 @@ public class ClientController implements Initializable{
 		this.columnIndustryType.setCellValueFactory(new PropertyValueFactory<ClientInfo, String>("industryType"));
 		this.columnParentCompany.setCellValueFactory(new PropertyValueFactory<ClientInfo, String>("parentCompany"));
 		this.columnFee.setCellValueFactory(new PropertyValueFactory<ClientInfo, String>("fee"));
-		this.columnDetailsbtn.setCellValueFactory(new PropertyValueFactory<ClientInfo, Button>("btnDetails"));
+//		this.columnDetailsbtn.setCellValueFactory(new PropertyValueFactory<ClientInfo, Button>("btnDetails"));
 
 		this.clientTable.setItems(null);
 		this.clientTable.setItems(this.data);
+		this.clientTable.setRowFactory( tv -> {
+			TableRow<ClientInfo> row = new TableRow<>();
+			row.setOnMouseClicked(event -> {
+				if (event.getClickCount() == 2 && (! row.isEmpty()) ) {
+					ClientInfo rowData = row.getItem();
+					rowData.displayDetails();
+				}
+			});
+			return row ;
+		});
 	}
 
 	@FXML
