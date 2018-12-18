@@ -1,10 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import javafx.geometry.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
-<?import javafx.scene.text.*?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
@@ -13,7 +8,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="889.0" prefWidth="1021.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="candidate.AddCandidateController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="889.0" prefWidth="1021.0" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="candidate.AddCandidateController">
    <top>
       <Label style="-fx-font-weight: 700;" text="New Candidate" BorderPane.alignment="CENTER">
          <font>
@@ -27,7 +22,16 @@
    <left>
       <VBox prefHeight="665.0" prefWidth="449.0" BorderPane.alignment="CENTER">
          <children>
-            <Label text="First name">
+            <Label text="Salutation">
+               <font>
+                  <Font size="20.0" />
+               </font>
+               <VBox.margin>
+                  <Insets />
+               </VBox.margin>
+            </Label>
+            <TextField fx:id="salutation" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="43.0" prefWidth="336.0" />
+            <Label text="First Name">
                <font>
                   <Font size="20.0" />
                </font>
@@ -36,7 +40,7 @@
                </VBox.margin>
             </Label>
             <TextField fx:id="fname" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="43.0" prefWidth="336.0" />
-            <Label text="Middle name">
+            <Label text="Middle Name">
                <font>
                   <Font size="20.0" />
                </font>
@@ -45,7 +49,7 @@
                </VBox.margin>
             </Label>
             <TextField fx:id="mname" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="43.0" prefWidth="336.0" />
-            <Label text="Last name">
+            <Label text="Last Name">
                <font>
                   <Font size="20.0" />
                </font>
@@ -54,7 +58,7 @@
                </VBox.margin>
             </Label>
             <TextField fx:id="lname" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="43.0" prefWidth="336.0" />
-            <Label text="Salutation">
+            <Label text="Current Salary">
                <font>
                   <Font size="20.0" />
                </font>
@@ -62,8 +66,8 @@
                   <Insets top="10.0" />
                </VBox.margin>
             </Label>
-            <TextField fx:id="salutation" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="43.0" prefWidth="336.0" />
-            <Label text="Status">
+            <TextField fx:id="currentSalary" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="43.0" prefWidth="336.0" />
+            <Label text="Desired Salary">
                <font>
                   <Font size="20.0" />
                </font>
@@ -71,8 +75,8 @@
                   <Insets top="10.0" />
                </VBox.margin>
             </Label>
-            <TextField fx:id="status" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="43.0" prefWidth="336.0" />
-            <Label text="Available">
+            <TextField fx:id="desiredSalary" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="43.0" prefWidth="336.0" />
+            <Label text="Rotation">
                <font>
                   <Font size="20.0" />
                </font>
@@ -80,8 +84,8 @@
                   <Insets top="10.0" />
                </VBox.margin>
             </Label>
-            <TextField fx:id="available" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="43.0" prefWidth="336.0" />
-            <Label text="Address">
+            <TextField fx:id="rotation" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="43.0" prefWidth="336.0" />
+            <Label text="Employement Type">
                <font>
                   <Font size="20.0" />
                </font>
@@ -89,16 +93,7 @@
                   <Insets top="10.0" />
                </VBox.margin>
             </Label>
-            <TextField fx:id="address" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="43.0" prefWidth="336.0" />
-            <Label text="Notes">
-               <font>
-                  <Font size="20.0" />
-               </font>
-               <VBox.margin>
-                  <Insets top="10.0" />
-               </VBox.margin>
-            </Label>
-            <TextField fx:id="notes" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="43.0" prefWidth="336.0" />
+            <TextField fx:id="employType" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="43.0" prefWidth="336.0" />
          </children>
          <BorderPane.margin>
             <Insets left="100.0" top="30.0" />
@@ -110,16 +105,7 @@
             <Insets bottom="50.0" top="30.0" />
          </BorderPane.margin>
          <children>
-            <Label text="Personal email">
-               <font>
-                  <Font size="20.0" />
-               </font>
-               <VBox.margin>
-                  <Insets />
-               </VBox.margin>
-            </Label>
-            <TextField fx:id="emailPersonal" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="43.0" prefWidth="336.0" />
-            <Label text="Work email">
+            <Label text="Street Address">
                <font>
                   <Font size="20.0" />
                </font>
@@ -127,8 +113,8 @@
                   <Insets top="10.0" />
                </VBox.margin>
             </Label>
-            <TextField fx:id="emailWork" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="43.0" prefWidth="336.0" />
-            <Label text="Current salary">
+            <TextField fx:id="addressStreet" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="43.0" prefWidth="336.0" />
+            <Label text="City">
                <font>
                   <Font size="20.0" />
                </font>
@@ -136,8 +122,8 @@
                   <Insets top="10.0" />
                </VBox.margin>
             </Label>
-            <TextField fx:id="currentSalary" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="43.0" prefWidth="336.0" />
-            <Label text="Desired salary">
+            <TextField fx:id="addressCity" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="43.0" prefWidth="336.0" />
+            <Label text="Province/State">
                <font>
                   <Font size="20.0" />
                </font>
@@ -145,8 +131,8 @@
                   <Insets top="10.0" />
                </VBox.margin>
             </Label>
-            <TextField fx:id="desiredSalary" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="43.0" prefWidth="336.0" />
-            <Label text="Placement">
+            <TextField fx:id="addressProvince" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="43.0" prefWidth="336.0" />
+            <Label text="Postal/Zip Code">
                <font>
                   <Font size="20.0" />
                </font>
@@ -154,8 +140,8 @@
                   <Insets top="10.0" />
                </VBox.margin>
             </Label>
-            <TextField fx:id="placement" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="43.0" prefWidth="336.0" />
-            <Label text="Rotation">
+            <TextField fx:id="addressPostalCode" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="43.0" prefWidth="336.0" />
+            <Label text="Country">
                <font>
                   <Font size="20.0" />
                </font>
@@ -163,16 +149,7 @@
                   <Insets top="10.0" />
                </VBox.margin>
             </Label>
-            <TextField fx:id="rotation" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="43.0" prefWidth="336.0" />
-            <Label text="Progress">
-               <font>
-                  <Font size="20.0" />
-               </font>
-               <VBox.margin>
-                  <Insets top="10.0" />
-               </VBox.margin>
-            </Label>
-            <TextField fx:id="progress" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="43.0" prefWidth="336.0" />
+            <TextField fx:id="addressCountry" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="43.0" prefWidth="336.0" />
          </children>
       </VBox>
    </center>

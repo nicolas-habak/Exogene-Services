@@ -17,20 +17,20 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.TextField;
 import javafx.scene.control.Alert.AlertType;
+import javafx.stage.Stage;
 
 public class AddClientController implements Initializable{
 	
 	@FXML private TextField name;
 	@FXML private TextField industryType;
 	@FXML private TextField parentCompany;
-	@FXML private TextField status;
 	@FXML private TextField fee;
 
 	private DBConnection DBConn;
 	private ObservableList<ClientInfo> data;
 	private FilteredList filter;
 	
-	private String clientInsert = "INSERT INTO Clients(name,industry,parentCompany,status,fee) VALUES (?,?,?,?,?)";
+	private String clientInsert = "INSERT INTO Clients(name,industry,parentCompany,fee) VALUES (?,?,?,?)";
 	
 	public void initialize(URL url, ResourceBundle rb) {
 		
@@ -45,8 +45,7 @@ public class AddClientController implements Initializable{
 			stmt.setString(1, this.name.getText());
 			stmt.setString(2, this.industryType.getText());
 			stmt.setString(3, this.parentCompany.getText());
-			stmt.setString(4, this.status.getText());
-			stmt.setString(5, this.fee.getText());
+			stmt.setString(4, this.fee.getText());
 			
 			stmt.execute();
 			conn.close();
@@ -54,8 +53,9 @@ public class AddClientController implements Initializable{
 			this.name.setText("");
 			this.industryType.setText("");
 			this.parentCompany.setText("");
-			this.status.setText("");
-			this.fee.setText("");			
+			this.fee.setText("");
+
+			((Stage) this.name.getScene().getWindow()).close();
 		}		
 	}
 	

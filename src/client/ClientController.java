@@ -50,31 +50,37 @@ public class ClientController implements Initializable{
 	private DBConnection DBConn;
 	private ObservableList<ClientInfo> data;
 	private FilteredList filter;
+
+	private Stage userStage = null;
 	
 	private String clientQuery = "SELECT * FROM Clients";
 
 	public void initialize(URL url, ResourceBundle rb) {
+		initTable();
+	}	
+
+	private void initTable() {
 		String id;
 		String name;
 		String industryType;
 		String parentCompany;
 		String fee;
-		
+
 		this.DBConn = new DBConnection();
 
 		try {
 			Connection conn = DBConnection.getConnection();
 			this.data = FXCollections.observableArrayList();
-						
+
 			ResultSet rs = conn.createStatement().executeQuery(clientQuery);
 
 			while(rs.next()) {
-                id = rs.getString(1);
+				id = rs.getString(1);
 				name = rs.getString(2);
 				industryType = rs.getString(3);
 				parentCompany = rs.getString(4);
 				fee = rs.getString(5);
-				
+
 				this.data.add(new ClientInfo(id, name, industryType, parentCompany, fee));
 			}
 			filter = new FilteredList(data, e->true);
@@ -83,28 +89,35 @@ public class ClientController implements Initializable{
 		catch(SQLException e) {
 			System.err.println("Error: " + e);
 		}
-				
+
 		this.columnName.setCellValueFactory(new PropertyValueFactory<ClientInfo, String>("name"));
 		this.columnIndustryType.setCellValueFactory(new PropertyValueFactory<ClientInfo, String>("industryType"));
 		this.columnParentCompany.setCellValueFactory(new PropertyValueFactory<ClientInfo, String>("parentCompany"));
 		this.columnFee.setCellValueFactory(new PropertyValueFactory<ClientInfo, String>("fee"));
 		this.columnDetailsbtn.setCellValueFactory(new PropertyValueFactory<ClientInfo, Button>("btnDetails"));
-		
+
 		this.clientTable.setItems(null);
 		this.clientTable.setItems(this.data);
-	}	
-	
+	}
+
 	@FXML
 	private void addNewClient(ActionEvent event) throws IOException {
-		Stage userStage = new Stage();
-		FXMLLoader loader = new FXMLLoader();
-		Pane root = (Pane)loader.load(getClass().getResource("AddClient.fxml").openStream());
-					
-		Scene scene = new Scene(root);
-		userStage.setScene(scene);
-		userStage.setTitle("New Client");
-		userStage.setResizable(false);
-		userStage.show();
+		if(userStage == null) {
+			userStage = new Stage();
+			FXMLLoader loader = new FXMLLoader();
+			Pane root = (Pane) loader.load(getClass().getResource("AddClient.fxml").openStream());
+
+			Scene scene = new Scene(root);
+			userStage.setScene(scene);
+			userStage.setTitle("New Client");
+			userStage.setResizable(false);
+			userStage.showAndWait();
+			userStage = null;
+			initTable();
+		} else {
+			userStage.setAlwaysOnTop(true);
+			userStage.setAlwaysOnTop(false);
+		}
 	}	
 	
 	@SuppressWarnings("unchecked")
