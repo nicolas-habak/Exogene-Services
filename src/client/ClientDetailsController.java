@@ -117,14 +117,6 @@ public class ClientDetailsController implements Initializable {
 		this.columnInfo.setCellValueFactory(new PropertyValueFactory<ContactInfo, String>("info"));
 		this.columnLanguage.setCellValueFactory(new PropertyValueFactory<ContactInfo, String>("language"));
 
-//		this.columnDepartment.setCellValueFactory(new PropertyValueFactory<ContactInfo, String>("department"));
-//		this.columnTitle.setCellValueFactory(new PropertyValueFactory<ContactInfo, String>("title"));
-//		this.columnName.setCellValueFactory(new PropertyValueFactory<ContactInfo, String>("name"));
-//		this.columnPhone.setCellValueFactory(new PropertyValueFactory<ContactInfo, String>("phoneNumber"));
-//		this.columnEmail.setCellValueFactory(new PropertyValueFactory<ContactInfo, String>("email"));
-//		this.columnNotes.setCellValueFactory(new PropertyValueFactory<ContactInfo, String>("notes"));
-//		this.columnRemoveBtn.setCellValueFactory(new PropertyValueFactory<ContactInfo, Button>("btnRemove"));
-//
 		this.contactsTable.setItems(null);
 		this.contactsTable.setItems(this.dataContacts);
 	}
