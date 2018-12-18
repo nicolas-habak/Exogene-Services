@@ -10,7 +10,7 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="896.0" prefWidth="1281.0" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="client.ClientDetailsController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="896.0" prefWidth="1281.0" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="client.ClientDetailsController">
    <left>
       <Pane prefHeight="393.0" prefWidth="376.0" BorderPane.alignment="CENTER">
          <children>
@@ -24,12 +24,7 @@
                   <Font size="20.0" />
                </font>
             </Label>
-            <Label layoutX="24.0" layoutY="164.0" text="Status">
-               <font>
-                  <Font size="20.0" />
-               </font>
-            </Label>
-            <Label layoutX="24.0" layoutY="204.0" text="Fee">
+            <Label layoutX="24.0" layoutY="164.0" text="Fee">
                <font>
                   <Font size="20.0" />
                </font>
@@ -49,12 +44,7 @@
                   <Font size="20.0" />
                </font>
             </Label>
-            <Label fx:id="lblStatus" layoutX="204.0" layoutY="164.0" text="Status">
-               <font>
-                  <Font size="20.0" />
-               </font>
-            </Label>
-            <Label fx:id="lblFee" layoutX="204.0" layoutY="204.0" text="Fee">
+            <Label fx:id="lblFee" layoutX="204.0" layoutY="164.0" text="Fee">
                <font>
                   <Font size="20.0" />
                </font>
@@ -72,10 +62,13 @@
             </Label>
             <TableView fx:id="contactsTable" layoutY="63.0" prefHeight="370.0" prefWidth="905.0">
               <columns>
-                  <TableColumn fx:id="columnName" prefWidth="207.0" text="Name" />
-                <TableColumn fx:id="columnTitle" prefWidth="149.0" text="Title" />
-                <TableColumn fx:id="columnDepartment" prefWidth="154.0" text="Department" />
-                  <TableColumn fx:id="columnDetailsbtn" prefWidth="154.0" />
+                 <TableColumn fx:id="columnSalutation" prefWidth="67.0" text="Salutation" />
+                 <TableColumn fx:id="columnName" prefWidth="248.0" text="Name" />
+                 <TableColumn fx:id="columnDepartment" prefWidth="164.0" text="Department" />
+                 <TableColumn fx:id="columnInfoType" prefWidth="90.0" text="Label" />
+                 <TableColumn fx:id="columnInfo" prefWidth="255.0" text="Contact Information" />
+                 <TableColumn fx:id="columnLanguage" minWidth="0.0" text="Language" />
+
               </columns>
             </TableView>
             <Button layoutX="835.0" layoutY="8.0" mnemonicParsing="false" onAction="#addContact">

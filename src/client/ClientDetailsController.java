@@ -34,13 +34,12 @@ public class ClientDetailsController implements Initializable {
 	@FXML private Label lblFee; 
 	
 	/* Contacts table columns */
-	@FXML private TableColumn columnDepartment;
-	@FXML private TableColumn columnTitle;
+	@FXML private TableColumn columnSalutation;
 	@FXML private TableColumn columnName;
-	@FXML private TableColumn columnPhone;
-	@FXML private TableColumn columnEmail;
-	@FXML private TableColumn columnNotes;
-	@FXML private TableColumn columnRemoveBtn;
+	@FXML private TableColumn columnDepartment;
+	@FXML private TableColumn columnInfoType;
+	@FXML private TableColumn columnInfo;
+	@FXML private TableColumn columnLanguage;
 		
 	/* Jobs table columns */
 	@FXML private TableColumn columnEmployType;
@@ -57,56 +56,33 @@ public class ClientDetailsController implements Initializable {
 	private DBConnection DBConn;
 	
 	public void initialize(URL url, ResourceBundle rb) {
-		
 	}
 	
-	public void setFields(String name) {
-		String industryType;
-		String parentCompany;
-		String status;
-		String fee;
-		
-		String clientDetailsQuery =  "SELECT * FROM Clients where name = '" + name + "'";		
-		
-		this.DBConn = new DBConnection();
-
-		try {
-			Connection conn = DBConnection.getConnection();
-			
-			ResultSet rs = conn.createStatement().executeQuery(clientDetailsQuery);
-			ClientInfo client;
-
-			name = rs.getString(2);
-			industryType = rs.getString(3);
-			parentCompany = rs.getString(4);
-			status = rs.getString(5);
-			fee = rs.getString(6);
-			
-			client = new ClientInfo(null, name, industryType, parentCompany, fee);
-			
-			lblName.setText(name);
-			lblIndustryType.setText(industryType);
-			lblParentCompany.setText(parentCompany);
-			lblStatus.setText(status);
-			lblFee.setText(fee);
-			
-			conn.close();			
-		}
-		catch(SQLException e) {
-			System.err.println("Error: " + e);
-		}
+	public void setFields(String id, String name, String industryType, String parentCompany, String fee) {
+		lblName.setText(name);
+		lblIndustryType.setText(industryType);
+		lblParentCompany.setText(parentCompany);
+		lblFee.setText(fee);
+		setClientContactTable(id);
 	}
 	
-	public void setClientContactTable(String clientName) {
-		String contactName;
+	public void setClientContactTable(String id) {
+		String salutation;
+		String fname;
+		String mname;
+		String lname;
 		String department;
-		String title;
-		String phoneNumber;
-		String email;
-		String notes;
+		String infoType;
+		String info;
+		String language;
+		Integer i;
 
-		String contactsQuery = "SELECT NAME, DEPARTMENT, TITLE, PHONENUMBER, EMAIL, NOTES FROM CandidateContact WHERE COMPANY = '" + clientName + "'";
-		
+		String contactsQuery = "SELECT ClientContact.id, ClientContact.salutation, ClientContact.fname, ClientContact.mname, ClientContact.lname, ClientContact.department," +
+				" ContactInfo.infoType, ContactInfo.info, ClientContact.language" +
+				" FROM ContactInfo LEFT JOIN ClientContact on ContactInfo.contact_id = ClientContact.id" +
+				" WHERE ClientContact.client_id = " + id +
+				" ORDER BY ClientContact.lname, ClientContact.mname, ClientContact.fname";
+
 		this.DBConn = new DBConnection();
 
 		try {
@@ -116,29 +92,39 @@ public class ClientDetailsController implements Initializable {
 			ResultSet rs = conn.createStatement().executeQuery(contactsQuery);
 
 			while(rs.next()) {
-				contactName = rs.getString(1);
-				department = rs.getString(2);
-				title = rs.getString(3);
-				phoneNumber = rs.getString(4);
-				email = rs.getString(5);
-				notes = rs.getString(6);
-				
-				this.dataContacts.add(new ContactInfo(null, clientName, contactName, department, title, phoneNumber, email, notes));
+				i = 1;
+				id = rs.getString(i++);
+				salutation = rs.getString(i++);
+				fname = rs.getString(i++);
+				mname = rs.getString(i++);
+				lname = rs.getString(i++);
+				department = rs.getString(i++);
+				infoType = rs.getString(i++);
+				info = rs.getString(i++);
+				language = rs.getString(i++);
+				this.dataContacts.add(new ContactInfo(id, salutation, fname, mname, lname, department, infoType, info, language));
 			}
 			conn.close();
 		}
 		catch(SQLException e) {
 			System.err.println("Error: " + e);
-		}		
+		}
 
-		this.columnDepartment.setCellValueFactory(new PropertyValueFactory<ContactInfo, String>("department"));
-		this.columnTitle.setCellValueFactory(new PropertyValueFactory<ContactInfo, String>("title"));
+		this.columnSalutation.setCellValueFactory(new PropertyValueFactory<ContactInfo, String>("salutation"));
 		this.columnName.setCellValueFactory(new PropertyValueFactory<ContactInfo, String>("name"));
-		this.columnPhone.setCellValueFactory(new PropertyValueFactory<ContactInfo, String>("phoneNumber"));
-		this.columnEmail.setCellValueFactory(new PropertyValueFactory<ContactInfo, String>("email"));
-		this.columnNotes.setCellValueFactory(new PropertyValueFactory<ContactInfo, String>("notes"));
-		this.columnRemoveBtn.setCellValueFactory(new PropertyValueFactory<ContactInfo, Button>("btnRemove"));
-		
+		this.columnDepartment.setCellValueFactory(new PropertyValueFactory<ContactInfo, String>("department"));
+		this.columnInfoType.setCellValueFactory(new PropertyValueFactory<ContactInfo, String>("infoType"));
+		this.columnInfo.setCellValueFactory(new PropertyValueFactory<ContactInfo, String>("info"));
+		this.columnLanguage.setCellValueFactory(new PropertyValueFactory<ContactInfo, String>("language"));
+
+//		this.columnDepartment.setCellValueFactory(new PropertyValueFactory<ContactInfo, String>("department"));
+//		this.columnTitle.setCellValueFactory(new PropertyValueFactory<ContactInfo, String>("title"));
+//		this.columnName.setCellValueFactory(new PropertyValueFactory<ContactInfo, String>("name"));
+//		this.columnPhone.setCellValueFactory(new PropertyValueFactory<ContactInfo, String>("phoneNumber"));
+//		this.columnEmail.setCellValueFactory(new PropertyValueFactory<ContactInfo, String>("email"));
+//		this.columnNotes.setCellValueFactory(new PropertyValueFactory<ContactInfo, String>("notes"));
+//		this.columnRemoveBtn.setCellValueFactory(new PropertyValueFactory<ContactInfo, Button>("btnRemove"));
+//
 		this.contactsTable.setItems(null);
 		this.contactsTable.setItems(this.dataContacts);
 	}

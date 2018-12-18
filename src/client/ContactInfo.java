@@ -5,6 +5,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -26,27 +28,29 @@ import javafx.stage.Stage;
 import javafx.stage.Window;
 
 public class ContactInfo {
-	final StringProperty uid;
-	final StringProperty company;
-	final StringProperty name;
+	final StringProperty id;
+	final StringProperty salutation;
+	final StringProperty fname;
+	final StringProperty mname;
+	final StringProperty lname;
 	final StringProperty department;
-	final StringProperty title;
-	final StringProperty phoneNumber;
-	final StringProperty email;
-	final StringProperty notes;
+	final StringProperty infoType;
+	final StringProperty info;
+	final StringProperty language;
 	Button btnRemove;
 	
-	public ContactInfo(String uid, String company, String name, String department, String title, String phoneNumber, String email, String notes) {
-		this.uid = new SimpleStringProperty(uid);
-		this.company = new SimpleStringProperty(company);
-		this.name = new SimpleStringProperty(name);		
+	public ContactInfo(String id, String salutation, String fname, String mname, String lname, String department, String infoType, String info, String language) {
+		this.id = new SimpleStringProperty(id);
+		this.salutation = new SimpleStringProperty(salutation);
+		this.fname = new SimpleStringProperty(fname);
+		this.mname = new SimpleStringProperty(mname);
+		this.lname = new SimpleStringProperty(lname);
 		this.department = new SimpleStringProperty(department);
-		this.title = new SimpleStringProperty(title);
-		this.phoneNumber = new SimpleStringProperty(phoneNumber);
-		this.email = new SimpleStringProperty(email);
-		this.notes = new SimpleStringProperty(notes);
+		this.infoType = new SimpleStringProperty(infoType);
+		this.info = new SimpleStringProperty(info);
+		this.language = new SimpleStringProperty(language);
 		this.btnRemove = new Button("Remove");
-		
+
 		btnRemove.setOnAction(e -> {
 			Alert alert = new Alert(AlertType.CONFIRMATION);
 			alert.setTitle("Remove confirmation");
@@ -71,7 +75,7 @@ public class ContactInfo {
 			
 			if (remove) {
 				try {
-					String removeQuery = "DELETE FROM CandidateContact WHERE NAME = '" + name + "'";
+					String removeQuery = "DELETE FROM CandidateContact WHERE id = '" + id + "'";
 					
 					Connection conn = DBConnection.getConnection();								
 					PreparedStatement stmt = conn.prepareStatement(removeQuery);
@@ -86,71 +90,40 @@ public class ContactInfo {
 			
 		});		
 	}
-	
-	public StringProperty uidProperty() {
-		return uid;
-	}
-	
-	public void setUid(String uid) {
-		this.uid.set(uid);
-	}
-	
-	public StringProperty companyProperty() {
-		return company;
-	}
-	
-	public void setCompany(String company) {
-		this.company.set(company);
-	}
-	
+
+	public StringProperty idProperty() { return id; }
+	public StringProperty salutationProperty() { return salutation; }
 	public StringProperty nameProperty() {
-		return name;
+        List<String> name = new ArrayList<String>();
+        if(fname.isNotEmpty().get()){
+            name.add(fname.get());
+        }
+        if(mname.isNotEmpty().get()){
+            name.add(mname.get());
+        }
+        if(lname.isNotEmpty().get()){
+            name.add(lname.get());
+        }
+	    return new SimpleStringProperty(String.join(" ", name));
 	}
-	
-	public void setName(String name) {
-		this.name.set(name);
-	}
-	
-	public StringProperty departmentProperty() {
-		return department;
-	}
+	public StringProperty fnameProperty() { return fname; }
+	public StringProperty mnameProperty() { return mname; }
+	public StringProperty lnameProperty() { return lname; }
+	public StringProperty departmentProperty() { return department; }
+	public StringProperty infoTypeProperty() { return infoType; }
+	public StringProperty infoProperty() { return info; }
+	public StringProperty languageProperty() { return language; }
 
-	public void setDepartment(String department) {
-		this.department.set(department);
-	}
-	
-	public StringProperty titleProperty() {
-		return title;
-	}
-	
-	public void setTitle(String title) {
-		this.title.set(title);
-	}
+	public void setId(String id) { this.id.set(id); }
+	public void setSalutation(String salutation) { this.salutation.set(salutation); }
+	public void setFname(String fname) { this.fname.set(fname); }
+	public void setMname(String mname) { this.mname.set(mname); }
+	public void setLname(String lname) { this.lname.set(lname); }
+	public void setDepartment(String department) { this.department.set(department); }
+	public void setInfoType(String infoType) { this.infoType.set(infoType); }
+	public void setInfo(String info) { this.info.set(info); }
+	public void setLanguage(String language) { this.language.set(language); }
 
-	public StringProperty phoneNumberProperty() {
-		return phoneNumber;
-	}
-	
-	public void setPhoneNumber(String phoneNumber) {
-		this.phoneNumber.set(phoneNumber);
-	}
-	
-	public StringProperty emailProperty() {
-		return email;
-	}
-	
-	public void setEmail(String email) {
-		this.email.set(email);
-	}
-	
-	public StringProperty notesProperty() {
-		return notes;
-	}
-	
-	public void setNotes(String notes) {
-		this.notes.set(notes);
-	}
-	
 	public Button getBtnRemove() {
 		return btnRemove;
 	}

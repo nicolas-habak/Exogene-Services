@@ -1,18 +1,17 @@
 package candidate;
 
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
 import javafx.stage.Stage;
+
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class CandidateInfo {
 	final private StringProperty id;
@@ -146,6 +145,8 @@ public class CandidateInfo {
 
 		if(addressStreet.isNotEmpty().get())
 			address.add(addressStreet.get());
+		else
+			address.add("-");
 
 		return new SimpleStringProperty(String.join(" ", address));
 	}
@@ -156,9 +157,13 @@ public class CandidateInfo {
 		if(addressCity.isNotEmpty().get())
 			address.add(addressCity.get());
 		if(addressProvince.isNotEmpty().get())
-			address.add(addressProvince.get());
+		    address.add(addressProvince.get());
 		if(addressPostalCode.isNotEmpty().get())
 			address.add(addressPostalCode.get());
+
+		if(address.size() == 0) {
+			address.add("-");
+		}
 
 		return new SimpleStringProperty(String.join(", ", address));
 	}
@@ -168,6 +173,8 @@ public class CandidateInfo {
 
 		if(addressCountry.isNotEmpty().get())
 			address.add(addressCountry.get());
+		else
+			address.add("-");
 
 		return new SimpleStringProperty(String.join(" ", address));
 	}

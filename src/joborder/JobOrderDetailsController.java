@@ -124,7 +124,7 @@ public class JobOrderDetailsController implements Initializable {
 				email = rs.getString(5);
 				notes = rs.getString(6);
 				
-				this.dataContacts.add(new ContactInfo(null, clientName, contactName, department, title, phoneNumber, email, notes));
+//				this.dataContacts.add(new ContactInfo(null, clientName, contactName, department, title, phoneNumber, email, notes));
 			}
 			conn.close();
 		}

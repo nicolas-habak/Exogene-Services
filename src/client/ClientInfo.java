@@ -14,15 +14,15 @@ import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 
 public class ClientInfo {
-	final StringProperty uid;
+	final StringProperty id;
 	final StringProperty name;
 	final StringProperty industryType;
 	final StringProperty parentCompany;
 	final StringProperty fee;
 	Button btnDetails;
 	
-	public ClientInfo(String uid, String name, String industryType, String parentCompany, String fee) {
-		this.uid = new SimpleStringProperty(uid);
+	public ClientInfo(String id, String name, String industryType, String parentCompany, String fee) {
+		this.id = new SimpleStringProperty(id);
 		this.name = new SimpleStringProperty(name);
 		this.industryType = new SimpleStringProperty(industryType);
 		this.parentCompany = new SimpleStringProperty(parentCompany);
@@ -30,12 +30,12 @@ public class ClientInfo {
 		this.btnDetails = new Button("Details");
 	}
 	
-	public StringProperty uidProperty() {
-		return uid;
+	public StringProperty idProperty() {
+		return id;
 	}
 	
-	public void setUid(String uid) {
-		this.uid.set(uid);
+	public void setId(String id) {
+		this.id.set(id);
 	}
 	
 	public StringProperty nameProperty() {
@@ -90,8 +90,7 @@ public class ClientInfo {
 		}
 
 		ClientDetailsController display = loader.getController();
-//			display.setFields(name);
-//			display.setClientContactTable(name);
+		display.setFields(this.id.get(), this.name.get(), this.industryType.get(), this.parentCompany.get(), this.fee.get());
 //			display.setContractTable(name);
 
 		Parent p = loader.getRoot();

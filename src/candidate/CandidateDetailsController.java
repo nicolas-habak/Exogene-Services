@@ -7,7 +7,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ResourceBundle;
 
-import client.ContactInfo;
+import candidate.ContactInfo;
 import dbUtil.DBConnection;
 import javafx.beans.property.StringProperty;
 import javafx.collections.FXCollections;
@@ -36,16 +36,12 @@ public class CandidateDetailsController implements Initializable {
 	@FXML private Label lblEmployType;
 	
 	/* Candidate table columns */
-	@FXML private TableColumn columnDepartment;
-	@FXML private TableColumn columnTitle;
-	@FXML private TableColumn columnName;
-	@FXML private TableColumn columnPhone;
-	@FXML private TableColumn columnEmail;
-	@FXML private TableColumn columnNotes;
-	@FXML private TableColumn columnRemoveBtn;
+	@FXML private TableColumn columnInfoType;
+	@FXML private TableColumn columnInfo;
 	
+	@FXML private TableView contactTable;
 	@FXML private TableView interviewTable;
-	
+
 	private DBConnection DBConn;
 	private String id;
 	private String salutation;
@@ -57,6 +53,8 @@ public class CandidateDetailsController implements Initializable {
 	private String desiredSalary;
 	private String rotation;
 	private String employType;
+
+	private ObservableList<ContactInfo> dataContacts;
 	
 	public void initialize(URL url, ResourceBundle rb) {
 	}
@@ -87,7 +85,45 @@ public class CandidateDetailsController implements Initializable {
 			lblDesiredSalary.setText(desiredSalary);
 			lblRotation.setText(rotation);
 			lblEmployType.setText(employType);
+            setContactTable(id);
 	}
+
+	private void setContactTable(String candidateID) {
+		String infoType;
+		String info;
+		String contactsQuery = "SELECT infoType, info FROM ContactInfo WHERE contactType = \"Candidate\" and contact_id = \"" + candidateID + "\"";
+		Integer i;
+
+		this.DBConn = new DBConnection();
+
+		try {
+			Connection conn = DBConnection.getConnection();
+			this.dataContacts = FXCollections.observableArrayList();
+
+			ResultSet rs = conn.createStatement().executeQuery(contactsQuery);
+
+			while(rs.next()) {
+				i = 1;
+				infoType = rs.getString(i++);
+				info = rs.getString(i++);
+
+				this.dataContacts.add(new ContactInfo(id, infoType, info));
+			}
+			conn.close();
+		}
+		catch(SQLException e) {
+			System.err.println("Error: " + e);
+		}
+
+		this.columnInfoType.setCellValueFactory(new PropertyValueFactory<ContactInfo, String>("infoType"));
+		this.columnInfo.setCellValueFactory(new PropertyValueFactory<ContactInfo, String>("info"));
+
+		this.contactTable.setItems(null);
+		this.contactTable.setItems(this.dataContacts);
+	}
+    @FXML
+    private void addContact(ActionEvent event) {
+    }
 	/*
 	public void setClientInterviewTable(String clientName) {
 		String contactName;
