@@ -7,6 +7,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ResourceBundle;
 
+import client.ContactInfo;
 import dbUtil.DBConnection;
 import javafx.beans.property.StringProperty;
 import javafx.collections.FXCollections;
@@ -26,17 +27,13 @@ public class CandidateDetailsController implements Initializable {
 	/* Candidate information fields */
 	@FXML private Label lblName;
 	@FXML private Label lblSalutation;	
-	@FXML private Label lblStatus;
-	@FXML private Label lblAvailable;
-	@FXML private Label lblAddress; 
-	@FXML private Label lblWorkEmail;
-	@FXML private Label lblPersonalEmail;
-	@FXML private Label lblNotes;
+	@FXML private Label lblAddressNoStreet;
+	@FXML private Label lblAddressCityProvincePCode;
+	@FXML private Label lblAddressCountry;
 	@FXML private Label lblCurrentSalary;
 	@FXML private Label lblDesiredSalary;
-	@FXML private Label lblPlacement;
 	@FXML private Label lblRotation;
-	@FXML private Label lblProgress;
+	@FXML private Label lblEmployType;
 	
 	/* Candidate table columns */
 	@FXML private TableColumn columnDepartment;
@@ -50,79 +47,46 @@ public class CandidateDetailsController implements Initializable {
 	@FXML private TableView interviewTable;
 	
 	private DBConnection DBConn;
+	private String id;
+	private String salutation;
+	private String name;
+	private String addressLn1;
+	private String addressLn2;
+	private String addressLn3;
+	private String currentSalary;
+	private String desiredSalary;
+	private String rotation;
+	private String employType;
 	
 	public void initialize(URL url, ResourceBundle rb) {
-		
+	}
+
+	public void setData(String id, String salutation, String name, String addressLn1, String addressLn2, String addressLn3,
+						String currentSalary, String desiredSalary, String rotation, String employType) {
+		this.id = id;
+		this.salutation = salutation;
+		this.name = name;
+		this.addressLn1 = addressLn1;
+		this.addressLn2 = addressLn2;
+		this.addressLn3 = addressLn3;
+		this.currentSalary = currentSalary;
+		this.desiredSalary = desiredSalary;
+		this.rotation = rotation;
+		this.employType = employType;
+
+		setFields();
 	}
 	
-	public void setFields(String fnameCandidate, String mnameCandidate, String lnameCandidate) {
-		String salutation;
-		String fname;
-		String mname;
-		String lname;
-		String name;
-		String status;
-		String available;
-		String address;
-		String workEmail;
-		String personalEmail;
-		String notes;
-		String currentSalary;
-		String desiredSalary;
-		String placement;
-		String rotation;
-		String progress;
-		
-		String candidateDetailsQuery =  "SELECT * FROM Candidates where fname = '" + fnameCandidate + "' AND mname = '" + mnameCandidate + "' AND lname = '" + lnameCandidate + "'";		
-		
-		this.DBConn = new DBConnection();
-
-		try {
-			Connection conn = DBConnection.getConnection();
-			
-			ResultSet rs = conn.createStatement().executeQuery(candidateDetailsQuery);
-			CandidateInfo candidate;
-
-			salutation = rs.getString(2);
-			fname = rs.getString(3);
-			mname = rs.getString(4);
-			lname = rs.getString(5);				
-			status = rs.getString(6);
-			available = rs.getString(7);
-			address = rs.getString(8);
-			workEmail = rs.getString(9);
-			personalEmail = rs.getString(10);
-			notes = rs.getString(11);
-			currentSalary = rs.getString(12);
-			desiredSalary = rs.getString(13);
-			placement = rs.getString(14);
-			rotation = rs.getString(15);
-			progress = rs.getString(16);
-			
-			name = fname + " " + mname + " " + lname;
-			
-			candidate = new CandidateInfo(null, salutation, fname, mname, lname, name, status, available, address, workEmail, personalEmail, notes, 
-					currentSalary, desiredSalary, placement, rotation, progress);			
-			
+	private void setFields() {
 			lblName.setText(name);
-			lblSalutation.setText(salutation);	
-			lblStatus.setText(status);
-			lblAvailable.setText(available);
-			lblAddress.setText(address); 
-			lblWorkEmail.setText(workEmail);
-			lblPersonalEmail.setText(personalEmail);
-			lblNotes.setText(notes);
+			lblSalutation.setText(salutation);
+			lblAddressNoStreet.setText(addressLn1);
+			lblAddressCityProvincePCode.setText(addressLn2);
+			lblAddressCountry.setText(addressLn3);
 			lblCurrentSalary.setText(currentSalary);
 			lblDesiredSalary.setText(desiredSalary);
-			lblPlacement.setText(placement);
 			lblRotation.setText(rotation);
-			lblProgress.setText(progress);
-			
-			conn.close();			
-		}
-		catch(SQLException e) {
-			System.err.println("Error: " + e);
-		}
+			lblEmployType.setText(employType);
 	}
 	/*
 	public void setClientInterviewTable(String clientName) {
@@ -173,6 +137,6 @@ public class CandidateDetailsController implements Initializable {
 	*/
 	@FXML
 	private void candidateContact(ActionEvent event) {
-		
+
 	}
 }

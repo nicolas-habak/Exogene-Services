@@ -1,28 +1,27 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.image.*?>
-<?import javafx.scene.text.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="835.0" prefWidth="1450.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="candidate.CandidateController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="835.0" prefWidth="1450.0" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="candidate.CandidateController">
    <center>
       <TableView fx:id="candidateTable" maxWidth="-Infinity" prefHeight="768.0" prefWidth="1453.0" BorderPane.alignment="CENTER">
          <columns>
-            <TableColumn fx:id="columnName" prefWidth="116.0" text="Name" />
-            <TableColumn fx:id="columnSalutation" prefWidth="69.0" text="Salutation" />
-            <TableColumn fx:id="columnStatus" prefWidth="65.0" text="Status" />
-            <TableColumn fx:id="columnAvailable" prefWidth="77.0" text="Available" />
-            <TableColumn fx:id="columnAddress" prefWidth="137.0" text="Address" />
-            <TableColumn fx:id="columnWorkEmail" prefWidth="111.0" text="Work Email" />
-            <TableColumn fx:id="columnPersonalEmail" prefWidth="102.0" text="Personnal Email" />
-            <TableColumn fx:id="columnNotes" prefWidth="149.0" text="Notes" />
-            <TableColumn fx:id="columnCurrentSalary" prefWidth="92.0" text="Current Salary" />
-            <TableColumn fx:id="columnDesiredSalary" prefWidth="93.0" text="Desired Salary" />
-            <TableColumn fx:id="columnPlacement" prefWidth="69.0" text="Placement" />
-            <TableColumn fx:id="columnRotation" prefWidth="81.0" text="Rotation" />
-            <TableColumn fx:id="columnProgress" prefWidth="157.0" text="Progress" />
-            <TableColumn fx:id="columnDetailsbtn" prefWidth="131.0" />
+            <TableColumn fx:id="columnName" editable="false" prefWidth="250.0" text="Name" />
+            <TableColumn fx:id="columnSalutation" editable="false" prefWidth="69.0" text="Salutation" />
+            <TableColumn fx:id="columnAddress" editable="false" prefWidth="300.0" text="Address" />
+            <TableColumn fx:id="columnCurrentSalary" editable="false" prefWidth="92.0" text="Current Salary" />
+            <TableColumn fx:id="columnDesiredSalary" editable="false" prefWidth="93.0" text="Desired Salary" />
+            <TableColumn fx:id="columnRotation" editable="false" prefWidth="81.0" text="Rotation" />
+            <TableColumn fx:id="columnDetailsbtn" editable="false" prefWidth="131.0" />
          </columns>
       </TableView>
    </center>
