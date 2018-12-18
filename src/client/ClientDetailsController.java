@@ -80,7 +80,7 @@ public class ClientDetailsController implements Initializable {
 		String contactsQuery = "SELECT ClientContact.id, ClientContact.salutation, ClientContact.fname, ClientContact.mname, ClientContact.lname, ClientContact.department," +
 				" ContactInfo.infoType, ContactInfo.info, ClientContact.language" +
 				" FROM ContactInfo LEFT JOIN ClientContact on ContactInfo.contact_id = ClientContact.id" +
-				" WHERE ClientContact.client_id = " + id +
+				" WHERE ClientContact.client_id = " + id + " and contactType = \"ClientContact\"" +
 				" ORDER BY ClientContact.lname, ClientContact.mname, ClientContact.fname";
 
 		this.DBConn = new DBConnection();
