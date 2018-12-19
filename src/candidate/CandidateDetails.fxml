@@ -122,29 +122,30 @@
                </font>
             </Label>
             <TableView fx:id="cvTable" layoutY="33.0" prefHeight="517.0" prefWidth="789.0">
-              <columns>
-                <TableColumn fx:id="columnDepartment" prefWidth="122.0" text="Department" />
-                <TableColumn fx:id="columnTitle" prefWidth="65.0" text="Title" />
+               <columns>
+                  <TableColumn fx:id="columnDepartment" prefWidth="122.0" text="Department" />
+                  <TableColumn fx:id="columnTitle" prefWidth="65.0" text="Title" />
                   <TableColumn fx:id="columnName" prefWidth="153.0" text="Name" />
                   <TableColumn fx:id="columnPhone" prefWidth="120.0" text="Phone" />
                   <TableColumn fx:id="columnEmail" prefWidth="152.0" text="Email" />
                   <TableColumn fx:id="columnNotes" prefWidth="204.0" text="Notes" />
                   <TableColumn fx:id="columnRemoveBtn" prefWidth="100.0" />
-              </columns>
+               </columns>
             </TableView>
             <TabPane layoutY="550.0" prefHeight="344.0" prefWidth="788.0" tabClosingPolicy="UNAVAILABLE">
-              <tabs>
+               <tabs>
                   <Tab fx:id="notesTab" text="Notes">
                      <content>
                         <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                            <children>
                               <TableView fx:id="notesTable" prefHeight="268.0" prefWidth="789.0">
                                  <columns>
-                                    <TableColumn fx:id="columnInfoType" prefWidth="122.0" text="Label" />
-                                    <TableColumn fx:id="columnInfo" prefWidth="347.0" text="Information" />
+                                    <TableColumn fx:id="columnNoteDate" prefWidth="122.0" text="Date" />
+                                    <TableColumn fx:id="columnNoteTitle" prefWidth="256.0" text="Title" />
+                                    <TableColumn fx:id="columnNote" prefWidth="438.0" text="Note" />
                                  </columns>
                               </TableView>
-                              <Button fx:id="btnAddContactInfo" layoutX="732.0" layoutY="267.0" mnemonicParsing="false" onAction="#addContact">
+                              <Button fx:id="btnAddNote" layoutX="732.0" layoutY="267.0" mnemonicParsing="false" onAction="#addContact">
                                  <graphic>
                                     <ImageView fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
                                        <image>
@@ -156,17 +157,17 @@
                            </children></AnchorPane>
                      </content>
                   </Tab>
-                <Tab text="Active Interviews">
-                  <content>
-                    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
-                  </content>
-                </Tab>
-                <Tab text="Closed Interviews">
-                  <content>
-                    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
-                  </content>
-                </Tab>
-              </tabs>
+                  <Tab text="Active Interviews">
+                     <content>
+                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+                     </content>
+                  </Tab>
+                  <Tab text="Closed Interviews">
+                     <content>
+                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+                     </content>
+                  </Tab>
+               </tabs>
             </TabPane>
             <Button layoutX="742.0" layoutY="-2.0" mnemonicParsing="false" prefHeight="16.0" prefWidth="47.0" text="CV">
                <font>
