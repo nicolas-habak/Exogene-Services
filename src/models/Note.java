@@ -52,7 +52,7 @@ public class Note {
             title = rs.getString(3);
             content = rs.getString(4);
             createdAt = rs.getString(5);
-            note = new Note(id, title, notableID, notableType, content, createdAt);
+            note = new Note(id, notableID, notableType, title, content, createdAt);
         }
 
         conn.close();
@@ -77,7 +77,7 @@ public class Note {
             title = rs.getString(2);
             content = rs.getString(3);
             createdAt = rs.getString(4);
-            notes.add(new Note(id, title, notableID, notableType, content, createdAt));
+            notes.add(new Note(id, notableID, notableType, title, content, createdAt));
         }
         conn.close();
 
