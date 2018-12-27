@@ -21,6 +21,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import models.Note;
 
 public class CandidateDetailsController implements Initializable {
 
@@ -38,8 +39,13 @@ public class CandidateDetailsController implements Initializable {
 	/* Candidate table columns */
 	@FXML private TableColumn columnInfoType;
 	@FXML private TableColumn columnInfo;
-	
+
+	@FXML private TableColumn columnNoteDate;
+	@FXML private TableColumn columnNoteTitle;
+	@FXML private TableColumn columnNote;
+
 	@FXML private TableView contactTable;
+	@FXML private TableView notesTable;
 	@FXML private TableView interviewTable;
 
 	private DBConnection DBConn;
@@ -55,7 +61,8 @@ public class CandidateDetailsController implements Initializable {
 	private String employType;
 
 	private ObservableList<ContactInfo> dataContacts;
-	
+	private ObservableList<Note> dataNotes;
+
 	public void initialize(URL url, ResourceBundle rb) {
 	}
 
@@ -86,6 +93,7 @@ public class CandidateDetailsController implements Initializable {
 			lblRotation.setText(rotation);
 			lblEmployType.setText(employType);
             setContactTable(id);
+			setNotesTable(id);
 	}
 
 	private void setContactTable(String candidateID) {
@@ -121,6 +129,23 @@ public class CandidateDetailsController implements Initializable {
 		this.contactTable.setItems(null);
 		this.contactTable.setItems(this.dataContacts);
 	}
+
+	private void setNotesTable(String candidateID) {
+		try {
+			this.dataNotes = FXCollections.observableArrayList();
+			dataNotes.addAll(Note.find(candidateID, "Candidate"));
+
+			this.columnNoteDate.setCellValueFactory(new PropertyValueFactory<Note, String>("createdAt"));
+			this.columnNoteTitle.setCellValueFactory(new PropertyValueFactory<Note, String>("title"));
+			this.columnNote.setCellValueFactory(new PropertyValueFactory<Note, String>("content"));
+
+			this.notesTable.setItems(null);
+			this.notesTable.setItems(this.dataNotes);
+		} catch (SQLException e) {
+			System.err.println("Error: " + e);
+		}
+	}
+
     @FXML
     private void addContact(ActionEvent event) {
     }
