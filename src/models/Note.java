@@ -84,17 +84,17 @@ public class Note {
         return notes;
     }
 
-    public StringProperty getIdProperty() { return id; }
-    public StringProperty getNotableIDProperty() { return notableID; }
-    public StringProperty getNotableTypeProperty() { return notableType; }
-    public StringProperty getTitleProperty() { return title; }
-    public StringProperty getContentProperty() { return content; }
-    public StringProperty getCreatedAtProperty() { return createdAt; }
+    public StringProperty idProperty() { return id; }
+    public StringProperty notableIDProperty() { return notableID; }
+    public StringProperty notableTypeProperty() { return notableType; }
+    public StringProperty titleProperty() { return title; }
+    public StringProperty contentProperty() { return content; }
+    public StringProperty createdAtProperty() { return createdAt; }
 
-    public void setIdProperty(String id) { this.id.set(id); }
-    public void setNotableIDProperty(String notableID) { this.notableID.set(notableID); }
-    public void setNotableTypeProperty(String notableType) { this.notableType.set(notableType); }
-    public void setTitleProperty(String title) { this.title.set(title); }
-    public void setContentProperty(String content) { this.content.set(content); }
-    public void setCreatedAtProperty(String createdAt) { this.createdAt.set(createdAt); }
+    public void setId(String id) { this.id.set(id); }
+    public void setNotableID(String notableID) { this.notableID.set(notableID); }
+    public void setNotableType(String notableType) { this.notableType.set(notableType); }
+    public void setTitle(String title) { this.title.set(title); }
+    public void setContent(String content) { this.content.set(content); }
+    public void setCreatedAt(String createdAt) { this.createdAt.set(createdAt); }
 }
